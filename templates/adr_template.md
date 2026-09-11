@@ -1,85 +1,130 @@
-# ADR-000X: Título corto de la decisión
- 
-<!--
-Nombra el archivo con el número consecutivo y un slug corto, por ejemplo:
-docs/adr/0001-usar-postgresql-como-base-de-datos-principal.md
-Los ADR se numeran en orden y NUNCA se editan después de aceptados para
-cambiar la decisión en sí (sí puedes corregir errores de redacción). Si la
-decisión cambia, escribes un ADR nuevo y marcas este como reemplazado
-(ver "Estado"). Así el repositorio queda como una bitácora histórica de
-por qué el sistema es como es.
--->
- 
+# ADR-0001: Stack tecnológico para el sistema de inventario para Pymes
+
 Autores:
- - @githubusername
-Fecha: AAAA-MM-DD
- 
+
+
+* Junior Andrés Arrieta Tabaco
+* Edgar Mauricio Montufar Molano
+* Kevin Alexis Bermúdez Caicedo
+* Antonio Moreno
+
+Fecha: 2026-09-10
+
 ## Estado
- 
-<!--
-Uno de: Propuesto | Aceptado | Rechazado | Reemplazado por ADR-000Y | Obsoleto
-Un ADR "Propuesto" está en discusión. Una vez el equipo decide, pasa a
-"Aceptado" (o "Rechazado" si se descarta la propuesta) y ya no se
-modifica su contenido de fondo.
--->
- 
+
 Propuesto
- 
+
 ## Contexto
- 
-<!--
-¿Qué problema técnico, restricción o fuerza nos obliga a tomar esta
-decisión ahora? Describe la situación de forma neutral y objetiva —
-todavía no es el lugar para argumentar a favor de una opción.
-Ejemplos de fuerzas en juego: requisitos no funcionales (rendimiento,
-seguridad, escalabilidad), restricciones de equipo o de tiempo,
-deuda técnica existente, compatibilidad con sistemas ya construidos.
--->
- 
+
+El proyecto consiste en desarrollar un sistema de inventario orientado a pequeñas y medianas empresas (Pymes). El sistema debe permitir gestionar la información del inventario mediante una aplicación web, manteniendo una separación clara entre la interfaz de usuario, la lógica del sistema y el almacenamiento de los datos.
+
+Para el desarrollo se requiere seleccionar tecnologías para el frontend, backend, base de datos, infraestructura y control de versiones.
+
+Las principales condiciones consideradas para la selección del stack tecnológico son:
+
+* Facilidad de aprendizaje e implementación para el equipo de desarrollo.
+* Integración entre las diferentes tecnologías.
+* Disponibilidad de documentación y recursos de aprendizaje.
+* Capacidad para desarrollar una aplicación web funcional y mantenible.
+* Posibilidad de desplegar el proyecto en una infraestructura accesible.
+* Uso de herramientas adecuadas para el control y seguimiento de los cambios realizados durante el desarrollo.
+* Posibilidad de que el equipo trabaje de manera colaborativa sobre el mismo proyecto.
+
 ## Decisión
- 
-<!--
-Qué vamos a hacer, en una o dos frases claras y en tiempo presente
-("Vamos a usar X para Y"). Esta es la sección más corta del documento:
-un ADR no es un RFC, no necesita convencer a nadie aquí — la
-justificación ya quedó en "Contexto" y las alternativas descartadas
-van abajo.
--->
- 
+
+Se utilizará el siguiente stack tecnológico para el desarrollo del sistema de inventario para Pymes:
+
+| Componente           | Tecnología        | Propósito                                                                             |
+| -------------------- | ----------------- | ------------------------------------------------------------------------------------- |
+| Frontend             | React             | Desarrollo de la interfaz de usuario y componentes interactivos del sistema.          |
+| Backend              | Node.js + Express | Desarrollo de la lógica del servidor y API REST para la comunicación con el frontend. |
+| Base de datos        | PostgreSQL        | Almacenamiento y gestión de la información del sistema de inventario.                 |
+| Infraestructura      | Render            | Despliegue y ejecución de los servicios de la aplicación.                             |
+| Control de versiones | Git + GitHub      | Control de cambios, gestión del código fuente y trabajo colaborativo.                 |
+
+La arquitectura seguirá una separación entre frontend y backend. React será responsable de la interfaz de usuario, mientras que Node.js con Express gestionará la lógica del servidor y la comunicación con PostgreSQL. Render será utilizado para el despliegue de la aplicación y Git junto con GitHub permitirá gestionar las versiones y la colaboración entre los integrantes del equipo.
+
 ## Alternativas consideradas
- 
-<!--
-Qué otras opciones se evaluaron y por qué se descartaron. No hace
-falta un análisis exhaustivo, basta con dejar constancia de que se
-consideraron y el motivo del descarte (costo, madurez, curva de
-aprendizaje, no cumple un requisito, etc.).
--->
- 
+
+### Frontend
+
+**React**
+
+Se selecciona React por su enfoque basado en componentes, su amplia documentación y su integración con aplicaciones web que requieren interfaces dinámicas e interactivas.
+
+**Alternativas consideradas:**
+
+* **Vue.js:** Es una alternativa sencilla y adecuada para interfaces web, pero el equipo decidió utilizar React como tecnología frontend.
+* **Angular:** Ofrece una estructura completa para aplicaciones web, pero presenta una curva de aprendizaje mayor para las necesidades y alcance del proyecto.
+
+### Backend
+
+**Node.js + Express**
+
+Se selecciona Node.js junto con Express debido a que permite desarrollar el backend utilizando JavaScript, facilitando la integración con React y permitiendo construir una API REST de manera sencilla.
+
+**Alternativas consideradas:**
+
+* **Django:** Es una alternativa robusta basada en Python, pero implicaría trabajar con un lenguaje diferente al utilizado en el frontend.
+* **Spring Boot:** Es una solución robusta para aplicaciones empresariales, pero presenta una mayor complejidad y curva de aprendizaje para el alcance actual del proyecto.
+
+### Base de datos
+
+**PostgreSQL**
+
+Se selecciona PostgreSQL debido a que es un sistema de gestión de bases de datos relacional, adecuado para manejar información estructurada como productos, categorías, usuarios y movimientos de inventario.
+
+**Alternativas consideradas:**
+
+* **MySQL:** Es una alternativa relacional ampliamente utilizada, pero se decidió utilizar PostgreSQL para el proyecto.
+* **MongoDB:** Es una base de datos NoSQL flexible, pero el modelo relacional de PostgreSQL se considera más apropiado para las relaciones entre las diferentes entidades del sistema de inventario.
+
+### Infraestructura
+
+**Render**
+
+Se selecciona Render como plataforma de infraestructura y despliegue debido a que permite publicar aplicaciones web y servicios backend de manera sencilla, facilitando el proceso de despliegue durante el desarrollo del proyecto.
+
+**Alternativas consideradas:**
+
+* **Vercel:** Es una opción muy adecuada para aplicaciones frontend, pero se decidió utilizar Render como plataforma principal para el despliegue del proyecto.
+* **Railway:** Es una alternativa para desplegar aplicaciones y bases de datos, pero el equipo seleccionó Render para este proyecto.
+
+### Control de versiones
+
+**Git + GitHub**
+
+Se utilizarán Git y GitHub para controlar las versiones del código fuente, registrar cambios y facilitar el trabajo colaborativo entre los integrantes del equipo.
+
+**Alternativas consideradas:**
+
+* **GitLab:** Ofrece funcionalidades similares para repositorios y colaboración, pero el equipo decidió utilizar GitHub.
+* **Bitbucket:** Es otra alternativa para alojar repositorios Git, pero no fue seleccionada para este proyecto.
+
 ## Consecuencias
- 
-<!--
-¿Qué se vuelve más fácil o más difícil después de esta decisión?
-Incluye efectos positivos y negativos por igual — un ADR honesto
-también documenta el costo que se está aceptando (deuda técnica
-introducida, dependencia nueva, curva de aprendizaje del equipo).
--->
- 
+
+### Consecuencias positivas
+
+* React permitirá construir una interfaz organizada mediante componentes reutilizables.
+* Node.js y Express permitirán desarrollar una API REST y mantener una separación entre frontend y backend.
+* PostgreSQL permitirá almacenar información estructurada y establecer relaciones entre las entidades del sistema.
+* El uso de JavaScript en frontend y backend reduce la cantidad de lenguajes que el equipo debe manejar.
+* Render facilitará el despliegue del proyecto y permitirá disponer de una aplicación accesible en línea.
+* Git y GitHub permitirán mantener un historial de cambios y facilitarán el trabajo colaborativo.
+* El stack seleccionado cuenta con tecnologías ampliamente utilizadas y con disponibilidad de documentación y recursos de aprendizaje.
+
+### Consecuencias negativas
+
+* El equipo deberá aprender y coordinar varias tecnologías diferentes.
+* Será necesario establecer una correcta comunicación entre React, la API desarrollada con Express y PostgreSQL.
+* El uso de diferentes servicios y herramientas introduce configuraciones adicionales para el despliegue.
+* El equipo deberá aprender buenas prácticas de manejo de ramas, commits y resolución de conflictos en Git.
+* La utilización de Render puede implicar limitaciones propias del servicio dependiendo del plan utilizado.
+* Node.js y Express requieren que el equipo establezca una estructura adecuada para mantener organizado el backend a medida que el proyecto crezca.
+
 ---
- 
-### Diferencia con un RFC (referencia rápida)
- 
-<!--
-Elimina esta sección en el ADR final; queda aquí solo como recordatorio
-para quien usa la plantilla.
-- Un RFC se escribe ANTES de decidir, para abrir discusión y llegar a
-  consenso; es un documento "vivo" mientras dura la deliberación.
-- Un ADR registra una decisión YA tomada (o que se está formalizando);
-  una vez aceptado, es casi inmutable — si cambia, se escribe un ADR
-  nuevo que reemplaza al anterior, no se edita el viejo.
-- El RFC suele ser más largo (motivación, métricas, riesgos, preguntas
-  abiertas); el ADR es deliberadamente corto: Contexto, Decisión,
-  Consecuencias.
-- En equipos que usan ambos: el RFC es el proceso de deliberación,
-  y al cerrarlo se destila un ADR corto como registro histórico de lo
-  que finalmente se decidió.
--->
+
+## Resumen de la decisión
+
+Se adopta **React + Node.js/Express + PostgreSQL + Render + Git/GitHub** como stack tecnológico para el sistema de inventario para Pymes, buscando un equilibrio entre facilidad de aprendizaje, integración entre tecnologías, mantenibilidad, colaboración y facilidad de despliegue.
+
